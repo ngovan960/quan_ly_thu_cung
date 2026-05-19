@@ -168,7 +168,7 @@ Database/script.sql
 ## 1. Clone project
 
 ```bash
-git clone LINK_GITHUB
+git clone https://github.com/ngovan960/quan_ly_thu_cung.git
 ```
 
 ---
