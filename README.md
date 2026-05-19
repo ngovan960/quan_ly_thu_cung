@@ -207,8 +207,8 @@ F5
 
 # 👨‍💻 Thành viên nhóm
 
-- Thành viên 1:
-- Thành viên 2:
+- Thành viên 1: Vuong Khanh Ly
+- Thành viên 2: Ngo Van Hieu
 
 ---
 
