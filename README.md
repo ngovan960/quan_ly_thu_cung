@@ -40,17 +40,7 @@ QuanLyThuCung
 │   ├── DichVu
 │   └── HoaDon
 │
-├── DTO
-│
-├── DAL
-│
-├── BLL
-│
 ├── Database
-│
-├── Resources
-│
-├── Utils
 │
 ├── App.config
 │
