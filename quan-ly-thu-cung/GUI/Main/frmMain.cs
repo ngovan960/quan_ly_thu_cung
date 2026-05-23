@@ -21,11 +21,13 @@ namespace quan_ly_thu_cung.GUI.Main
         SqlConnection conn = null;
         private void frmMain_Load(object sender, EventArgs e)
         {
+            if (this.DesignMode)
+                return;
             conn = new SqlConnection(chuoiKetNoi);
             conn.Open();
             truyenDuLieuDashboard();
-            
         }
+        // Dashboard
         private void truyenDuLieuDashboard()
         {
             if(conn.State == ConnectionState.Closed) {
@@ -48,6 +50,11 @@ namespace quan_ly_thu_cung.GUI.Main
             SqlCommand cmdHoaDon = new SqlCommand(sqlHoaDon, conn);
             slHoaDon = (int)cmdHoaDon.ExecuteScalar();
             dashboard1.NapDuLieuVaoBtn(slKH, slThuCung, slDichVu, slHoaDon);
+
+        }
+        // DichVu
+        private void LoadDataDichVu()
+        {
 
         }
     }
