@@ -38,10 +38,11 @@
             this.txtHoTen = new System.Windows.Forms.TextBox();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.txtXoa = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtXoa = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -103,6 +104,7 @@
             // 
             // txtMaKhachHang
             // 
+            this.txtMaKhachHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.txtMaKhachHang.Location = new System.Drawing.Point(198, 18);
             this.txtMaKhachHang.Multiline = true;
             this.txtMaKhachHang.Name = "txtMaKhachHang";
@@ -112,6 +114,7 @@
             // 
             // txtSoDienThoai
             // 
+            this.txtSoDienThoai.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.txtSoDienThoai.Location = new System.Drawing.Point(198, 73);
             this.txtSoDienThoai.Multiline = true;
             this.txtSoDienThoai.Name = "txtSoDienThoai";
@@ -120,6 +123,7 @@
             // 
             // txtHoTen
             // 
+            this.txtHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.txtHoTen.Location = new System.Drawing.Point(526, 18);
             this.txtHoTen.Multiline = true;
             this.txtHoTen.Name = "txtHoTen";
@@ -128,6 +132,7 @@
             // 
             // txtDiaChi
             // 
+            this.txtDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.txtDiaChi.Location = new System.Drawing.Point(526, 73);
             this.txtDiaChi.Multiline = true;
             this.txtDiaChi.Name = "txtDiaChi";
@@ -139,7 +144,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.btnXoa);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.btnSua);
             this.panel1.Controls.Add(this.txtXoa);
             this.panel1.Controls.Add(this.btnThem);
             this.panel1.Controls.Add(this.txtDiaChi);
@@ -150,33 +156,24 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.panel1.Location = new System.Drawing.Point(3, 276);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(990, 267);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // btnXoa
+            // btnSua
             // 
-            this.btnXoa.BackColor = System.Drawing.Color.SpringGreen;
-            this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.btnXoa.Location = new System.Drawing.Point(250, 134);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(100, 36);
-            this.btnXoa.TabIndex = 10;
-            this.btnXoa.Text = "Sửa";
-            this.btnXoa.UseVisualStyleBackColor = false;
-            // 
-            // txtXoa
-            // 
-            this.txtXoa.BackColor = System.Drawing.Color.Tomato;
-            this.txtXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.txtXoa.Location = new System.Drawing.Point(450, 134);
-            this.txtXoa.Name = "txtXoa";
-            this.txtXoa.Size = new System.Drawing.Size(100, 36);
-            this.txtXoa.TabIndex = 9;
-            this.txtXoa.Text = "Xóa";
-            this.txtXoa.UseVisualStyleBackColor = false;
+            this.btnSua.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.btnSua.Location = new System.Drawing.Point(250, 134);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(100, 36);
+            this.btnSua.TabIndex = 10;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = false;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -188,6 +185,7 @@
             this.btnThem.TabIndex = 8;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = false;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -204,6 +202,27 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(996, 546);
             this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.textBox1.Location = new System.Drawing.Point(50, 205);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(485, 31);
+            this.textBox1.TabIndex = 11;
+            // 
+            // txtXoa
+            // 
+            this.txtXoa.BackColor = System.Drawing.Color.OrangeRed;
+            this.txtXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.txtXoa.Location = new System.Drawing.Point(450, 134);
+            this.txtXoa.Name = "txtXoa";
+            this.txtXoa.Size = new System.Drawing.Size(100, 36);
+            this.txtXoa.TabIndex = 9;
+            this.txtXoa.Text = "Xóa";
+            this.txtXoa.UseVisualStyleBackColor = false;
+            this.txtXoa.Click += new System.EventHandler(this.txtXoa_Click);
             // 
             // khachhang
             // 
@@ -233,9 +252,10 @@
         private System.Windows.Forms.TextBox txtHoTen;
         private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnXoa;
-        private System.Windows.Forms.Button txtXoa;
+        private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button txtXoa;
     }
 }

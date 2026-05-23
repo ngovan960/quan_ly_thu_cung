@@ -70,6 +70,12 @@
     <Compile Include="GUI\Main\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Thu_Cung\Thu_Cung.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Thu_Cung\Thu_Cung.Designer.cs">
+      <DependentUpon>Thu_Cung.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\Khach_Hang\khachhang.resx">
@@ -80,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Thu_Cung\Thu_Cung.resx">
+      <DependentUpon>Thu_Cung.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
