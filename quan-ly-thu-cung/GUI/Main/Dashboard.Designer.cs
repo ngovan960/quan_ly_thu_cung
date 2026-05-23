@@ -45,6 +45,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnDichVu, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnThuCung, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnKhachHang, 0, 0);
+            this.tableLayoutPanel1.Cursor = System.Windows.Forms.Cursors.No;
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

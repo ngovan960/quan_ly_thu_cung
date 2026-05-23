@@ -51,7 +51,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(941, 596);
+            this.tabControl1.Size = new System.Drawing.Size(739, 480);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -61,7 +61,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage1.Size = new System.Drawing.Size(933, 567);
+            this.tabPage1.Size = new System.Drawing.Size(731, 451);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Trang chủ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -112,17 +112,18 @@
             // 
             // dashboard1
             // 
-            this.dashboard1.Location = new System.Drawing.Point(0, 4);
+            this.dashboard1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dashboard1.Location = new System.Drawing.Point(4, 4);
             this.dashboard1.Margin = new System.Windows.Forms.Padding(4);
             this.dashboard1.Name = "dashboard1";
-            this.dashboard1.Size = new System.Drawing.Size(929, 563);
+            this.dashboard1.Size = new System.Drawing.Size(723, 443);
             this.dashboard1.TabIndex = 0;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(941, 596);
+            this.ClientSize = new System.Drawing.Size(739, 480);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmMain";
