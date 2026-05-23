@@ -21,10 +21,11 @@ namespace quan_ly_thu_cung.GUI.Main
         SqlConnection conn = null;
         private void frmMain_Load(object sender, EventArgs e)
         {
+            if (this.DesignMode)
+                return;
             conn = new SqlConnection(chuoiKetNoi);
             conn.Open();
             truyenDuLieuDashboard();
-            
         }
         // Dashboard
         private void truyenDuLieuDashboard()

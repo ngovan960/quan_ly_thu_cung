@@ -55,7 +55,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(739, 480);
+            this.tabControl1.Size = new System.Drawing.Size(722, 463);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -65,7 +65,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(731, 451);
+            this.tabPage1.Size = new System.Drawing.Size(632, 434);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Trang chủ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -76,7 +76,7 @@
             this.dashboard1.Location = new System.Drawing.Point(4, 4);
             this.dashboard1.Margin = new System.Windows.Forms.Padding(4);
             this.dashboard1.Name = "dashboard1";
-            this.dashboard1.Size = new System.Drawing.Size(723, 443);
+            this.dashboard1.Size = new System.Drawing.Size(624, 426);
             this.dashboard1.TabIndex = 0;
             // 
             // tabPage2
@@ -108,7 +108,7 @@
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(731, 451);
+            this.tabPage4.Size = new System.Drawing.Size(714, 434);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Dịch Vụ";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@
             this.dichVu1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dichVu1.Location = new System.Drawing.Point(4, 4);
             this.dichVu1.Name = "dichVu1";
-            this.dichVu1.Size = new System.Drawing.Size(723, 443);
+            this.dichVu1.Size = new System.Drawing.Size(706, 426);
             this.dichVu1.TabIndex = 0;
             // 
             // tabPage5
@@ -136,7 +136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 480);
+            this.ClientSize = new System.Drawing.Size(722, 463);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmMain";
