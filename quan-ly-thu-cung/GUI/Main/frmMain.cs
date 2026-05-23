@@ -50,5 +50,10 @@ namespace quan_ly_thu_cung.GUI.Main
             dashboard1.NapDuLieuVaoBtn(slKH, slThuCung, slDichVu, slHoaDon);
 
         }
+
+        private void khachhang1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
