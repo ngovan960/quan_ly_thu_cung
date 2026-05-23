@@ -26,6 +26,7 @@ namespace quan_ly_thu_cung.GUI.Main
             truyenDuLieuDashboard();
             
         }
+        // Dashboard
         private void truyenDuLieuDashboard()
         {
             if(conn.State == ConnectionState.Closed) {
@@ -48,6 +49,11 @@ namespace quan_ly_thu_cung.GUI.Main
             SqlCommand cmdHoaDon = new SqlCommand(sqlHoaDon, conn);
             slHoaDon = (int)cmdHoaDon.ExecuteScalar();
             dashboard1.NapDuLieuVaoBtn(slKH, slThuCung, slDichVu, slHoaDon);
+
+        }
+        // DichVu
+        private void LoadDataDichVu()
+        {
 
         }
     }
