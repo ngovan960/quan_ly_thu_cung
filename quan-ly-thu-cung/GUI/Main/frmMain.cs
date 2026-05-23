@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,39 @@ namespace quan_ly_thu_cung.GUI.Main
         public frmMain()
         {
             InitializeComponent();
+        }
+        string chuoiKetNoi = @"Data Source=.\SQLEXPRESS; Initial Catalog=QuanLyThuCung; Integrated Security=True";
+        SqlConnection conn = null;
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            conn = new SqlConnection(chuoiKetNoi);
+            conn.Open();
+            truyenDuLieuDashboard();
+            
+        }
+        private void truyenDuLieuDashboard()
+        {
+            if(conn.State == ConnectionState.Closed) {
+                conn.Open();
+            }
+            int slKH = 0, slThuCung = 0,slDichVu = 0,slHoaDon = 0;
+            string sqlKH = "SELECT COUNT(*) FROM KhachHang";
+            SqlCommand cmdKH = new SqlCommand(sqlKH, conn);
+            slKH = (int)cmdKH.ExecuteScalar();
+
+            string sqlThuCung = "SELECT COUNT(*) FROM ThuCung";
+            SqlCommand cmdTC = new SqlCommand(sqlThuCung, conn);
+            slThuCung = (int)cmdTC.ExecuteScalar();
+
+            string sqlDichVu = "SELECT COUNT(*) FROM DichVu";
+            SqlCommand cmdDv = new SqlCommand(sqlDichVu, conn);
+            slDichVu = (int)cmdDv.ExecuteScalar();
+
+            string sqlHoaDon = "SELECT COUNT(*) FROM HoaDon";
+            SqlCommand cmdHoaDon = new SqlCommand(sqlHoaDon, conn);
+            slHoaDon = (int)cmdHoaDon.ExecuteScalar();
+            dashboard1.NapDuLieuVaoBtn(slKH, slThuCung, slDichVu, slHoaDon);
+
         }
     }
 }
