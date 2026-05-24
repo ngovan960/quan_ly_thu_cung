@@ -58,6 +58,18 @@
     <Compile Include="GUI\DichVu\DichVu.Designer.cs">
       <DependentUpon>DichVu.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\HoaDon\HoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\HoaDon\HoaDon.Designer.cs">
+      <DependentUpon>HoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\HoaDon\LichSuHoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\HoaDon\LichSuHoaDon.Designer.cs">
+      <DependentUpon>LichSuHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Main\Dashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -74,6 +86,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\DichVu\DichVu.resx">
       <DependentUpon>DichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\HoaDon\HoaDon.resx">
+      <DependentUpon>HoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\HoaDon\LichSuHoaDon.resx">
+      <DependentUpon>LichSuHoaDon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Main\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>

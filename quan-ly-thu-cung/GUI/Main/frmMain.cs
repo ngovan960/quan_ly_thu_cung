@@ -57,5 +57,10 @@ namespace quan_ly_thu_cung.GUI.Main
         {
 
         }
+
+        private void tabPage5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
