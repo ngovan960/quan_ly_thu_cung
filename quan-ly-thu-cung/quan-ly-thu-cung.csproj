@@ -52,6 +52,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DichVu\DichVu.cs" />
+    <Compile Include="GUI\DichVu\DichVu.Designer.cs">
+      <DependentUpon>DichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\HoaDon\HoaDon.cs" />
+    <Compile Include="GUI\HoaDon\HoaDon.Designer.cs">
+      <DependentUpon>HoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\HoaDon\LichSuHoaDon.cs" />
+    <Compile Include="GUI\HoaDon\LichSuHoaDon.Designer.cs">
+      <DependentUpon>LichSuHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Khach_Hang\khachhang.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -78,6 +90,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\DichVu\DichVu.resx">
+      <DependentUpon>DichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\HoaDon\HoaDon.resx">
+      <DependentUpon>HoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\HoaDon\LichSuHoaDon.resx">
+      <DependentUpon>LichSuHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Khach_Hang\khachhang.resx">
       <DependentUpon>khachhang.cs</DependentUpon>
     </EmbeddedResource>

@@ -57,7 +57,10 @@ namespace quan_ly_thu_cung.GUI.Main
         {
 
         }
+        private void khachhang1_Load(object sender, EventArgs e)
+        {
 
+        }
         private void tabPage5_Click(object sender, EventArgs e)
         {
 

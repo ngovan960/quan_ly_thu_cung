@@ -34,13 +34,17 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.khachhang1 = new quan_ly_thu_cung.GUI.Khach_Hang.khachhang();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.thu_Cung2 = new quan_ly_thu_cung.GUI.Thu_Cung.Thu_Cung();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.dichVu1 = new quan_ly_thu_cung.GUI.DichVu.DichVu();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.hoaDon1 = new quan_ly_thu_cung.GUI.HoaDon.HoaDon();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -116,6 +120,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.dichVu1);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
@@ -125,8 +130,17 @@
             this.tabPage4.Text = "Dịch Vụ";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // dichVu1
+            // 
+            this.dichVu1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dichVu1.Location = new System.Drawing.Point(4, 4);
+            this.dichVu1.Name = "dichVu1";
+            this.dichVu1.Size = new System.Drawing.Size(1026, 506);
+            this.dichVu1.TabIndex = 0;
+            // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.hoaDon1);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
@@ -135,6 +149,14 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Hoá Đơn";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // hoaDon1
+            // 
+            this.hoaDon1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hoaDon1.Location = new System.Drawing.Point(4, 4);
+            this.hoaDon1.Name = "hoaDon1";
+            this.hoaDon1.Size = new System.Drawing.Size(1026, 506);
+            this.hoaDon1.TabIndex = 0;
             // 
             // thu_Cung2
             // 
@@ -159,6 +181,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -174,5 +198,7 @@
         private Dashboard dashboard1;
         private Khach_Hang.khachhang khachhang1;
         private Thu_Cung.Thu_Cung thu_Cung2;
+        private DichVu.DichVu dichVu1;
+        private HoaDon.HoaDon hoaDon1;
     }
 }
