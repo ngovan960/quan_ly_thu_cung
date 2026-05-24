@@ -41,15 +41,8 @@ namespace quan_ly_thu_cung.GUI.Khach_Hang
             LoadKhachHang();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void dgvKhachHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -107,11 +100,11 @@ namespace quan_ly_thu_cung.GUI.Khach_Hang
                 return false;
             }
 
-            // Số điện thoại phải bắt đầu bằng 0 và có 10-11 chữ số
+            // Số điện thoại phải bắt đầu bằng 0 và có 10 chữ số
             string sdt = txtSoDienThoai.Text.Trim();
-            if (!Regex.IsMatch(sdt, @"^0\d{9,10}$"))
+            if (!Regex.IsMatch(sdt, @"^0\d{9}$"))
             {
-                MessageBox.Show("Số điện thoại không hợp lệ (phải là 10-11 số, bắt đầu bằng 0).");
+                MessageBox.Show("Số điện thoại không hợp lệ (phải là 10 số, bắt đầu bằng 0).");
                 txtSoDienThoai.Focus();
                 return false;
             }
@@ -188,29 +181,100 @@ namespace quan_ly_thu_cung.GUI.Khach_Hang
         {
             try
             {
+                // Kiểm tra dữ liệu
+                if (!KiemTraDuLieu())
+                    return;
+
                 using (SqlConnection conn = new SqlConnection(chuoiKetNoi))
                 {
-                    string sql = @"UPDATE KhachHang SET HoTen = @HoTen,SoDienThoai = @SoDienThoai,DiaChi = @DiaChi
-                           WHERE MaKhachHang = @MaKhachHang";
-
-                    SqlCommand command = new SqlCommand(sql, conn);
-
-                    command.Parameters.AddWithValue("@MaKhachHang", txtMaKhachHang.Text.Trim());
-                    command.Parameters.AddWithValue("@HoTen", txtHoTen.Text.Trim());
-                    command.Parameters.AddWithValue("@SoDienThoai", txtSoDienThoai.Text.Trim());
-                    command.Parameters.AddWithValue("@DiaChi", txtDiaChi.Text.Trim());
-
                     conn.Open();
-                    int result = command.ExecuteNonQuery();
 
-                    if (result > 0)
+                    
+                    // KIỂM TRA KHÁCH HÀNG TỒN TẠI
+                    
+                    string sqlCheckKH = @" SELECT COUNT(*) FROM KhachHang WHERE MaKhachHang = @MaKhachHang";
+
+                    using (SqlCommand cmdCheckKH =
+                           new SqlCommand(sqlCheckKH, conn))
                     {
-                        LoadKhachHang();
-                        MessageBox.Show("Sửa khách hàng thành công!");
+                        cmdCheckKH.Parameters.AddWithValue(
+                            "@MaKhachHang",
+                            txtMaKhachHang.Text.Trim());
+
+                        int count =
+                            (int)cmdCheckKH.ExecuteScalar();
+
+                        // Không tồn tại
+                        if (count == 0)
+                        {
+                            MessageBox.Show(
+                                "Không tìm thấy khách hàng để sửa.");
+
+                            return;
+                        }
                     }
-                    else
+
+                    
+                    // KIỂM TRA SĐT TRÙNG
+                    string sqlCheckSDT = @"  SELECT COUNT(*) FROM KhachHang WHERE SoDienThoai = @SDT AND MaKhachHang <> @MaKhachHang";
+
+                    using (SqlCommand cmdCheckSDT =
+                           new SqlCommand(sqlCheckSDT, conn))
                     {
-                        MessageBox.Show("Không tìm thấy khách hàng để sửa.");
+                        cmdCheckSDT.Parameters.AddWithValue(
+                            "@SDT",
+                            txtSoDienThoai.Text.Trim());
+
+                        cmdCheckSDT.Parameters.AddWithValue(
+                            "@MaKhachHang",
+                            txtMaKhachHang.Text.Trim());
+
+                        int countSDT =
+                            (int)cmdCheckSDT.ExecuteScalar();
+
+                        // Nếu SĐT bị trùng
+                        if (countSDT > 0)
+                        {
+                            MessageBox.Show(
+                                "Số điện thoại đã tồn tại.");
+
+                            txtSoDienThoai.Focus();
+
+                            return;
+                        }
+                    }
+
+                    
+                    // UPDATE KHÁCH HÀNG
+                    
+                    string sql = @"UPDATE KhachHang SET
+                    HoTen = @HoTen,
+                    SoDienThoai = @SoDienThoai,
+                    DiaChi = @DiaChi
+                    WHERE MaKhachHang = @MaKhachHang";
+
+                    using (SqlCommand command = new SqlCommand(sql, conn))
+                    {
+                        command.Parameters.AddWithValue( "@MaKhachHang",txtMaKhachHang.Text.Trim());
+
+                        command.Parameters.AddWithValue( "@HoTen", txtHoTen.Text.Trim());
+
+                        command.Parameters.AddWithValue( "@SoDienThoai", txtSoDienThoai.Text.Trim());
+
+                        command.Parameters.AddWithValue("@DiaChi", txtDiaChi.Text.Trim());
+
+                        int result =command.ExecuteNonQuery();
+
+                        if (result > 0)
+                        {
+                            LoadKhachHang();
+
+                            MessageBox.Show("Sửa khách hàng thành công!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sửa thất bại.");
+                        }
                     }
                 }
             }
@@ -288,5 +352,55 @@ namespace quan_ly_thu_cung.GUI.Khach_Hang
                 MessageBox.Show("Lỗi khi xóa khách hàng: " + ex.Message);
             }
         }
+
+        private void BtnTimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Lấy từ khóa người dùng nhập
+                string tuKhoa = txtTimKiem.Text.Trim();
+
+                // Nếu ô tìm kiếm trống thì load toàn bộ danh sách
+                if (string.IsNullOrWhiteSpace(tuKhoa))
+                {
+                    LoadKhachHang();
+                    return;
+                }
+
+                // Tạo kết nối SQL
+                using (SqlConnection conn = new SqlConnection(chuoiKetNoi))
+                {
+                    // Câu lệnh tìm theo Họ tên hoặc Số điện thoại
+                    string sql = @"SELECT * FROM KhachHang WHERE MaKhachHang LIKE N'%' + @TuKhoa + '%'
+                   OR HoTen LIKE N'%' + @TuKhoa + '%'
+                   OR SoDienThoai LIKE '%' + @TuKhoa + '%'";
+
+
+                    SqlCommand command = new SqlCommand(sql, conn);
+
+                    // Dùng % để tìm gần đúng
+                    command.Parameters.AddWithValue("@TuKhoa", "%" + tuKhoa + "%");
+
+                    // Đổ dữ liệu ra bảng
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dgvKhachHang.DataSource = dt;
+
+                    // Nếu không có kết quả
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Không tìm thấy khách hàng phù hợp.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm khách hàng: " + ex.Message);
+            }
+        }
+
+   
     }
 }

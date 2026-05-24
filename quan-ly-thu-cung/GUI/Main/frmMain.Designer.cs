@@ -36,7 +36,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.thu_Cung1 = new quan_ly_thu_cung.GUI.Thu_Cung.Thu_Cung();
+            this.thu_Cung2 = new quan_ly_thu_cung.GUI.Thu_Cung.Thu_Cung();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -104,7 +104,7 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.thu_Cung1);
+            this.tabPage3.Controls.Add(this.thu_Cung2);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
@@ -136,12 +136,13 @@
             this.tabPage5.Text = "Hoá Đơn";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // thu_Cung1
+            // thu_Cung2
             // 
-            this.thu_Cung1.Location = new System.Drawing.Point(0, 0);
-            this.thu_Cung1.Name = "thu_Cung1";
-            this.thu_Cung1.Size = new System.Drawing.Size(1038, 511);
-            this.thu_Cung1.TabIndex = 0;
+            this.thu_Cung2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.thu_Cung2.Location = new System.Drawing.Point(4, 4);
+            this.thu_Cung2.Name = "thu_Cung2";
+            this.thu_Cung2.Size = new System.Drawing.Size(1026, 506);
+            this.thu_Cung2.TabIndex = 1;
             // 
             // frmMain
             // 
@@ -172,6 +173,6 @@
         private System.Windows.Forms.TabPage tabPage5;
         private Dashboard dashboard1;
         private Khach_Hang.khachhang khachhang1;
-        private Thu_Cung.Thu_Cung thu_Cung1;
+        private Thu_Cung.Thu_Cung thu_Cung2;
     }
 }
