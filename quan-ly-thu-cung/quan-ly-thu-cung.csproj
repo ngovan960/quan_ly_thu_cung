@@ -52,15 +52,21 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\DichVu\DichVu.cs" />
+    <Compile Include="GUI\DichVu\DichVu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="GUI\DichVu\DichVu.Designer.cs">
       <DependentUpon>DichVu.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\HoaDon\HoaDon.cs" />
+    <Compile Include="GUI\HoaDon\HoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="GUI\HoaDon\HoaDon.Designer.cs">
       <DependentUpon>HoaDon.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\HoaDon\LichSuHoaDon.cs" />
+    <Compile Include="GUI\HoaDon\LichSuHoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="GUI\HoaDon\LichSuHoaDon.Designer.cs">
       <DependentUpon>LichSuHoaDon.cs</DependentUpon>
     </Compile>
