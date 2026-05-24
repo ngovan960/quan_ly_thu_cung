@@ -36,9 +36,14 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dichVu1 = new quan_ly_thu_cung.GUI.DichVu.DichVu();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.hoaDon1 = new quan_ly_thu_cung.GUI.HoaDon.HoaDon();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.lichSuHoaDon1 = new quan_ly_thu_cung.GUI.HoaDon.LichSuHoaDon();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -51,21 +56,20 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(722, 463);
+            this.tabControl1.Size = new System.Drawing.Size(752, 449);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dashboard1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(632, 434);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(744, 423);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Trang chủ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -73,30 +77,27 @@
             // dashboard1
             // 
             this.dashboard1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dashboard1.Location = new System.Drawing.Point(4, 4);
-            this.dashboard1.Margin = new System.Windows.Forms.Padding(4);
+            this.dashboard1.Location = new System.Drawing.Point(3, 3);
             this.dashboard1.Name = "dashboard1";
-            this.dashboard1.Size = new System.Drawing.Size(624, 426);
+            this.dashboard1.Size = new System.Drawing.Size(738, 417);
             this.dashboard1.TabIndex = 0;
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(731, 451);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(744, 423);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Khách Hàng";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(731, 451);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(744, 423);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thú Cưng";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -104,11 +105,10 @@
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.dichVu1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(714, 434);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(744, 423);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Dịch Vụ";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -116,35 +116,66 @@
             // dichVu1
             // 
             this.dichVu1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dichVu1.Location = new System.Drawing.Point(4, 4);
+            this.dichVu1.Location = new System.Drawing.Point(3, 3);
+            this.dichVu1.Margin = new System.Windows.Forms.Padding(2);
             this.dichVu1.Name = "dichVu1";
-            this.dichVu1.Size = new System.Drawing.Size(706, 426);
+            this.dichVu1.Size = new System.Drawing.Size(738, 417);
             this.dichVu1.TabIndex = 0;
             // 
             // tabPage5
             // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage5.Controls.Add(this.hoaDon1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage5.Size = new System.Drawing.Size(731, 451);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(744, 423);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Hoá Đơn";
             this.tabPage5.UseVisualStyleBackColor = true;
+            this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
+            // 
+            // hoaDon1
+            // 
+            this.hoaDon1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hoaDon1.Location = new System.Drawing.Point(3, 3);
+            this.hoaDon1.Name = "hoaDon1";
+            this.hoaDon1.Size = new System.Drawing.Size(738, 417);
+            this.hoaDon1.TabIndex = 0;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.lichSuHoaDon1);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(744, 423);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Lich su hoa don";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // lichSuHoaDon1
+            // 
+            this.lichSuHoaDon1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lichSuHoaDon1.Location = new System.Drawing.Point(3, 3);
+            this.lichSuHoaDon1.Name = "lichSuHoaDon1";
+            this.lichSuHoaDon1.Size = new System.Drawing.Size(738, 417);
+            this.lichSuHoaDon1.TabIndex = 0;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 463);
+            this.ClientSize = new System.Drawing.Size(752, 449);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmMain";
             this.Text = "frmMain";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -159,5 +190,8 @@
         private System.Windows.Forms.TabPage tabPage5;
         private Dashboard dashboard1;
         private DichVu.DichVu dichVu1;
+        private HoaDon.HoaDon hoaDon1;
+        private System.Windows.Forms.TabPage tabPage6;
+        private HoaDon.LichSuHoaDon lichSuHoaDon1;
     }
 }
