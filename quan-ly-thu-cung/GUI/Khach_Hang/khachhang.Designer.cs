@@ -142,7 +142,7 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.BackColor = System.Drawing.Color.Snow;
             this.panel1.Controls.Add(this.cboTieuChi);
             this.panel1.Controls.Add(this.BtnTimKiem);
@@ -159,9 +159,9 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.panel1.Location = new System.Drawing.Point(3, 276);
+            this.panel1.Location = new System.Drawing.Point(27, 276);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(990, 267);
+            this.panel1.Size = new System.Drawing.Size(942, 267);
             this.panel1.TabIndex = 1;
             // 
             // cboTieuChi
