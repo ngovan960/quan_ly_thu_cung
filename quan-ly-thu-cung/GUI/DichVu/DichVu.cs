@@ -161,7 +161,14 @@ namespace quan_ly_thu_cung.GUI.DichVu
             }
             string id = textBoxMaDichVu.Text.Replace("'", "''");
             string sql = "DELETE FROM DichVu WHERE MaDichVu='" + id + "'";
-            SqlCommand cmd = new SqlCommand(sql, conn);
+
+                // Xóa dữ liệu ở bảng ChiTietHoaDon trước
+
+             string sql1 = "DELETE FROM ChiTietHoaDon WHERE MaDichVu='" + id + "'";
+             SqlCommand cmd1 = new SqlCommand(sql1, conn);
+             cmd1.ExecuteNonQuery();
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
             int rows = cmd.ExecuteNonQuery();
             if(rows > 0)
             {

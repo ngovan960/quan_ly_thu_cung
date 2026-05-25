@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 
 namespace quan_ly_thu_cung.GUI.HoaDon
 {
@@ -165,6 +166,11 @@ namespace quan_ly_thu_cung.GUI.HoaDon
             return "HD" + so.ToString("000");
         }
         // Lưu hoá đơn
+        // Biến dùng để in
+        string maHDIn = "";
+        string tenKHIn = "";
+        string tenThuCungIn = "";
+        decimal tongTienIn = 0;
         private void lapHoaDon_click()
         {
             if(comboBoxKhachHang.SelectedValue == null)
@@ -231,6 +237,16 @@ namespace quan_ly_thu_cung.GUI.HoaDon
                     cmdCT.ExecuteNonQuery();
                 }
                 trans.Commit();
+
+                maHDIn = maHD;
+                tenKHIn = comboBoxKhachHang.Text;
+                tenThuCungIn = comboBoxThuCung.Text;
+                tongTienIn = tongTien;
+
+                printPreviewDialog1.Document = printDocument1;
+                printPreviewDialog1.ShowDialog();
+
+
                 MessageBox.Show("Lập hoá đơn thành công!");
                 dgvDichVu.Rows.Clear();
                 labelTongTien.Text = "Tổng tiền: 0 VND";
@@ -248,5 +264,72 @@ namespace quan_ly_thu_cung.GUI.HoaDon
         {
             lapHoaDon_click();
         }
+
+        private void veHoaDon(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            Font fontTitle = new Font("Arial", 18, FontStyle.Bold);
+            Font font = new Font("Arial", 12);
+
+            int y = 50;
+
+            // Tiêu đề
+            g.DrawString("HOA DON THU CUNG", fontTitle, Brushes.Black, 180, y);
+            y += 50;
+
+            // Thông tin hóa đơn
+            g.DrawString("Ma hoa don: " + maHDIn, font, Brushes.Black, 50, y);
+            y += 30;
+
+            g.DrawString("Khach hang: " + tenKHIn, font, Brushes.Black, 50, y);
+            y += 30;
+
+            g.DrawString("Thu cung: " + tenThuCungIn, font, Brushes.Black, 50, y);
+            y += 30;
+
+            g.DrawString("Ngay lap: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, 50, y);
+            y += 50;
+
+            // Header bảng
+            g.DrawString("Dich vu", font, Brushes.Black, 50, y);
+            g.DrawString("SL", font, Brushes.Black, 300, y);
+            g.DrawString("Thanh tien", font, Brushes.Black, 420, y);
+
+            y += 30;
+
+            // Danh sách dịch vụ
+            foreach (DataGridViewRow row in dgvDichVu.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                g.DrawString(row.Cells["TenDichVu"].Value.ToString(), font, Brushes.Black, 50, y);
+
+                g.DrawString(row.Cells["SoLuong"].Value.ToString(), font, Brushes.Black, 300, y);
+
+                g.DrawString(
+                    Convert.ToDecimal(row.Cells["ThanhTien"].Value).ToString("N0") + " VND",
+                    font,
+                    Brushes.Black,
+                    420,
+                    y);
+
+                y += 30;
+            }
+
+            y += 40;
+
+            // Tổng tiền
+            g.DrawString(
+                "Tong tien: " + tongTienIn.ToString("N0") + " VND",
+                fontTitle,
+                Brushes.Black,
+                50,
+                y);
+        }
+        
+
+
+
     }
 }
