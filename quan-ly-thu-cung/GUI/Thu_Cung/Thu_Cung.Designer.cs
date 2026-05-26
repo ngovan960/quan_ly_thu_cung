@@ -124,6 +124,10 @@
             this.cboTimKiem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.cboTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.cboTimKiem.FormattingEnabled = true;
+            this.cboTimKiem.Items.AddRange(new object[] {
+            "Mã thú cưng",
+            "Tên thú cưng",
+            "Loại thú cưng"});
             this.cboTimKiem.Location = new System.Drawing.Point(117, 216);
             this.cboTimKiem.Name = "cboTimKiem";
             this.cboTimKiem.Size = new System.Drawing.Size(158, 30);

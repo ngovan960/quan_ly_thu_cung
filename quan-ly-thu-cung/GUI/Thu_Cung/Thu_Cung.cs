@@ -20,29 +20,18 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
         {
             InitializeComponent();
         }
+        //Lấy dữ liệu từ database và hiển thị lên DataGridView
         private void LoadThuCung()
         {
-            // Tạo kết nối SQL
-            SqlConnection conn = new SqlConnection(chuoiKetNoi);
-
-            // Câu lệnh lấy toàn bộ dữ liệu
-            string sql = "SELECT * FROM ThuCung";
-
-            // Adapter dùng để đổ dữ liệu
-            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-
-            // Tạo bảng tạm
+           SqlConnection conn = new SqlConnection(chuoiKetNoi);
+            conn.Open();
+            string sql = "select * from ThuCung";
+            SqlDataAdapter da = new SqlDataAdapter(sql,conn);
             DataTable dt = new DataTable();
-
-            // Đổ dữ liệu vào bảng
             da.Fill(dt);
-
-            // Hiển thị lên DataGridView
             dgvThuCung.DataSource = dt;
+
         }
-
-
-
         private void dgvThuCung_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Kiểm tra có click đúng dòng dữ liệu không
@@ -146,7 +135,7 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
                 {
                     conn.Open();
 
-                    // KIỂM TRA MÃ THÚ CƯNG ĐÃ TỒN TẠI
+                    //kiểm tra mã thú cưng đã tồn tại
 
                     string sqlCheckMa = "SELECT COUNT(*) FROM ThuCung WHERE MaThuCung = @MaThuCung";
 
@@ -398,16 +387,6 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
             }
         }
       
-        private void Thu_Cung_Load(object sender, EventArgs e)
-        {
-            LoadThuCung();
-            cboTimKiem.Items.Add("Mã thú cưng");
-            cboTimKiem.Items.Add("Tên thú cưng");
-            cboTimKiem.Items.Add("Loại thú cưng");
-
-            cboTimKiem.SelectedIndex = 0;
-        }
-
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
@@ -484,6 +463,15 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
             {
                 MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
             }
+        }
+
+
+       
+
+        private void Thu_Cung_Load(object sender, EventArgs e)
+        {
+            LoadThuCung();
+            
         }
     }
 }

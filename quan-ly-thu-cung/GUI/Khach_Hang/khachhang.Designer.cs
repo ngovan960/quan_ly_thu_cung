@@ -38,7 +38,7 @@
             this.txtHoTen = new System.Windows.Forms.TextBox();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cboTieuChi = new System.Windows.Forms.ComboBox();
+            this.cboTimKiem = new System.Windows.Forms.ComboBox();
             this.BtnTimKiem = new System.Windows.Forms.Button();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.btnSua = new System.Windows.Forms.Button();
@@ -144,7 +144,7 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel1.BackColor = System.Drawing.Color.Snow;
-            this.panel1.Controls.Add(this.cboTieuChi);
+            this.panel1.Controls.Add(this.cboTimKiem);
             this.panel1.Controls.Add(this.BtnTimKiem);
             this.panel1.Controls.Add(this.txtTimKiem);
             this.panel1.Controls.Add(this.btnSua);
@@ -164,18 +164,18 @@
             this.panel1.Size = new System.Drawing.Size(942, 267);
             this.panel1.TabIndex = 1;
             // 
-            // cboTieuChi
+            // cboTimKiem
             // 
-            this.cboTieuChi.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.cboTieuChi.FormattingEnabled = true;
-            this.cboTieuChi.Items.AddRange(new object[] {
-            "Tìm tất cả",
-            "Họ Tên",
+            this.cboTimKiem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.cboTimKiem.FormattingEnabled = true;
+            this.cboTimKiem.Items.AddRange(new object[] {
+            "Mã khách hàng",
+            "Họ tên",
             "Số điện thoại"});
-            this.cboTieuChi.Location = new System.Drawing.Point(145, 208);
-            this.cboTieuChi.Name = "cboTieuChi";
-            this.cboTieuChi.Size = new System.Drawing.Size(148, 30);
-            this.cboTieuChi.TabIndex = 13;
+            this.cboTimKiem.Location = new System.Drawing.Point(145, 208);
+            this.cboTimKiem.Name = "cboTimKiem";
+            this.cboTimKiem.Size = new System.Drawing.Size(148, 30);
+            this.cboTimKiem.TabIndex = 13;
             // 
             // BtnTimKiem
             // 
@@ -240,7 +240,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.dgvKhachHang, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -283,6 +282,6 @@
         private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.Button txtXoa;
         private System.Windows.Forms.Button BtnTimKiem;
-        private System.Windows.Forms.ComboBox cboTieuChi;
+        private System.Windows.Forms.ComboBox cboTimKiem;
     }
 }
