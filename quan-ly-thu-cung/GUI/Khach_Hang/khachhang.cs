@@ -50,23 +50,21 @@ namespace quan_ly_thu_cung.GUI.Khach_Hang
         }
         private bool KiemTraDuLieu()
         {
-            // Mã khách hàng không được để trống
+            //mã khách hàng không được để trống
             if (string.IsNullOrWhiteSpace(txtMaKhachHang.Text))
             {
                 MessageBox.Show("Vui lòng nhập mã khách hàng.");
                 txtMaKhachHang.Focus();
                 return false;
             }
-
-            // Họ tên không được để trống
+            //họ tên không được để trống
             if (string.IsNullOrWhiteSpace(txtHoTen.Text))
             {
                 MessageBox.Show("Vui lòng nhập họ tên khách hàng.");
                 txtHoTen.Focus();
                 return false;
             }
-
-            // Họ tên phải từ 2 đến 100 ký tự
+            //họ tên phải từ 2 đến 100 ký tự
             string hoTen = txtHoTen.Text.Trim();
             if (hoTen.Length < 2 || hoTen.Length > 100)
             {
@@ -74,8 +72,8 @@ namespace quan_ly_thu_cung.GUI.Khach_Hang
                 txtHoTen.Focus();
                 return false;
             }
-            // Họ tên không được chứa số hoặc ký tự đặc biệt
-            // Chỉ cho phép chữ cái, khoảng trắng, và dấu tiếng Việt
+            // họ tên không được chứa số hoặc ký tự đặc biệt
+            // chỉ cho phép chữ cái, khoảng trắng, và dấu tiếng Việt
             if (!Regex.IsMatch(hoTen, @"^[a-zA-ZÀ-ỹ\s]+$"))
             {
                 MessageBox.Show("Họ tên không được chứa số hoặc ký tự đặc biệt.");

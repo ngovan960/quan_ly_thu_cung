@@ -168,7 +168,7 @@
             this.cboTimKiem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.cboTimKiem.FormattingEnabled = true;
             this.cboTimKiem.Items.AddRange(new object[] {
-            "Mã khách hàng",
+            "Mã Khách hàng",
             "Họ tên",
             "Số điện thoại"});
             this.cboTimKiem.Location = new System.Drawing.Point(145, 208);
