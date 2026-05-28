@@ -60,7 +60,6 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
                 txtMaThuCung.Focus();
                 return false;
             }
-
             // Kiểm tra tên thú cưng
             if (string.IsNullOrWhiteSpace(txtTenThuCung.Text))
             {
@@ -68,7 +67,6 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
                 txtTenThuCung.Focus();
                 return false;
             }
-
             // Tên phải từ 2 ký tự trở lên
             if (txtTenThuCung.Text.Trim().Length < 2)
             {
@@ -76,7 +74,6 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
                 txtTenThuCung.Focus();
                 return false;
             }
-
             // Kiểm tra mã khách hàng
             if (string.IsNullOrWhiteSpace(txtMaKH.Text))
             {
@@ -84,34 +81,29 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
                 txtMaKH.Focus();
                 return false;
             }
-
-            // Kiểm tra tuổi
+            //kiểm tra tuổi
             if (string.IsNullOrWhiteSpace(txtTuoi.Text))
             {
                 MessageBox.Show("Vui lòng nhập tuổi.");
                 txtTuoi.Focus();
                 return false;
             }
-
             // Tuổi phải là số
             int tuoi;
-
             if (!int.TryParse(txtTuoi.Text.Trim(), out tuoi))
             {
                 MessageBox.Show("Tuổi phải là số.");
                 txtTuoi.Focus();
                 return false;
             }
-
-            // Tuổi không âm
+            //tuổi không âm
             if (tuoi < 0)
             {
                 MessageBox.Show("Tuổi không hợp lệ.");
                 txtTuoi.Focus();
                 return false;
             }
-
-            // Kiểm tra loại thú cưng
+            // kiểm tra loại thú cưng
             if (string.IsNullOrWhiteSpace(txtLoaiThuCung.Text))
             {
                 MessageBox.Show("Vui lòng nhập loại thú cưng.");
@@ -298,7 +290,6 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
                 {
                     sql += "LoaiThuCung like N'%" + tuKhoa + "%'";
                 }
-
                 SqlDataAdapter da = new SqlDataAdapter(sql, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
