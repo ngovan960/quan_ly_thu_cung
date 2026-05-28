@@ -30,6 +30,7 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
             DataTable dt = new DataTable();
             da.Fill(dt);
             dgvThuCung.DataSource = dt;
+            conn.Close();
 
         }
         private void dgvThuCung_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -125,110 +126,52 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
         {
             try
             {
-                // KIỂM TRA DỮ LIỆU
-               
                 if (!KiemTraDuLieu())
-                    return;
-
-                // Tạo kết nối SQL
-                using (SqlConnection conn = new SqlConnection(chuoiKetNoi))
                 {
-                    conn.Open();
-
-                    //kiểm tra mã thú cưng đã tồn tại
-
-                    string sqlCheckMa = "SELECT COUNT(*) FROM ThuCung WHERE MaThuCung = @MaThuCung";
-
-                    using (SqlCommand cmdCheckMa = new SqlCommand(sqlCheckMa, conn))
-                    {
-                        cmdCheckMa.Parameters.AddWithValue("@MaThuCung", txtMaThuCung.Text.Trim());
-
-                        int count = (int)cmdCheckMa.ExecuteScalar();
-
-                        // Nếu mã đã tồn tại
-                        if (count > 0)
-                        {
-                            MessageBox.Show("Mã thú cưng đã tồn tại.");
-
-                            txtMaThuCung.Focus();
-
-                            return;
-                        }
-                    }
-
-                    // KIỂM TRA MÃ KHÁCH HÀNG TỒN TẠI
-                    
-                    string sqlCheckKH = "SELECT COUNT(*) FROM KhachHang WHERE MaKhachHang = @MaKH";
-
-                    using (SqlCommand cmdCheckKH = new SqlCommand(sqlCheckKH, conn))
-                    {
-                        cmdCheckKH.Parameters.AddWithValue("@MaKH", txtMaKH.Text.Trim());
-
-                        int countKH = (int)cmdCheckKH.ExecuteScalar();
-
-                        // Nếu không tồn tại khách hàng
-                        if (countKH == 0)
-                        {
-                            MessageBox.Show("Mã khách hàng không tồn tại.");
-
-                            txtMaKH.Focus();
-
-                            return;
-                        }
-                    }
-
-  
-                    // CÂU LỆNH INSERT
-
-                    string sqlInsert = @"  INSERT INTO ThuCung (
-                        MaThuCung,
-                        TenThuCung,
-                        MaKhachHang,
-                        Tuoi,
-                        LoaiThuCung,
-                        Giong,
-                        TinhTrangSucKhoe
-                     )
-                    VALUES
-                    (
-                        @MaThuCung,
-                        @TenThuCung,
-                        @MaKhachHang,
-                        @Tuoi,
-                        @LoaiThuCung,
-                        @Giong,
-                        @TinhTrangSucKhoe
-                    )";
-
-                    // Tạo command thêm dữ liệu
-                    using (SqlCommand command = new SqlCommand(sqlInsert, conn))
-                    {
-                        // Truyền dữ liệu từ textbox vào SQL
-                        command.Parameters.AddWithValue("@MaThuCung", txtMaThuCung.Text.Trim());
-
-                        command.Parameters.AddWithValue("@TenThuCung", txtTenThuCung.Text.Trim());
-
-                        command.Parameters.AddWithValue("@MaKhachHang", txtMaKH.Text.Trim());
-
-                        command.Parameters.AddWithValue("@Tuoi", int.Parse(txtTuoi.Text.Trim()));
-
-                        command.Parameters.AddWithValue("@LoaiThuCung", txtLoaiThuCung.Text.Trim());
-
-                        command.Parameters.AddWithValue("@Giong", txtGiong.Text.Trim());
-
-                        command.Parameters.AddWithValue("@TinhTrangSucKhoe", txtTinhTrangSK.Text.Trim());
-
-                        // Thực thi lệnh INSERT
-                        command.ExecuteNonQuery();
-                    }
+                    return;
                 }
-
-                // LOAD LẠI DỮ LIỆU
-
+                SqlConnection conn = new SqlConnection(chuoiKetNoi);
+                conn.Open();
+                //ktra ma trùng
+                string sqlCheck = "select count(*) from ThuCung where MaThuCung = '" + txtMaThuCung.Text.Trim() + "'";
+                SqlCommand cmdCheck = new SqlCommand(sqlCheck, conn);
+                int count = (int)cmdCheck.ExecuteScalar();
+                if (count > 0)
+                {
+                    MessageBox.Show("Mã thú cưng đã tồn tại");
+                    txtMaThuCung.Focus();
+                    conn.Close();
+                    return;
+                }
+                //ktra mã khách hàng
+                string sqlCheckKH= "select count(*) from KhachHang where MaKhachHang = '" + txtMaKH.Text.Trim() + "'";
+                SqlCommand cmdCheckKH = new SqlCommand(sqlCheckKH, conn);
+                int countKH = (int)cmdCheckKH.ExecuteScalar();
+                if(countKH == 0)
+                {
+                    MessageBox.Show("Mã Khách hàng không tồn tại");
+                    txtMaKH.Focus();
+                    conn.Close();
+                    return;
+                }
+                //insert
+                string sqlInsert =
+                 "insert into ThuCung " +
+                 "(MaThuCung, TenThuCung, LoaiThuCung, Giong, Tuoi, TinhTrangSucKhoe, MaKhachHang) " +
+                 "values (" +
+                 "'" + txtMaThuCung.Text.Trim() + "'," +
+                 "N'" + txtTenThuCung.Text.Trim() + "'," +
+                 "N'" + txtLoaiThuCung.Text.Trim() + "'," +
+                 "N'" + txtGiong.Text.Trim() + "'," +
+                 txtTuoi.Text.Trim() + "," +
+                 "N'" + txtTinhTrangSK.Text.Trim() + "'," +
+                 "'" + txtMaKH.Text.Trim() + "'" +
+                 ")";
+                SqlCommand cmdInsert = new SqlCommand( sqlInsert, conn);
+                cmdInsert.ExecuteNonQuery();
+                conn.Close();
                 LoadThuCung();
-
-                // Thông báo thành công
-                MessageBox.Show("Thêm thú cưng thành công!");
+                MessageBox.Show("Thêm thú cưng thành công");
             }
             catch (Exception ex)
             {
@@ -240,79 +183,43 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
         {
             try
             {
-                // Kiểm tra dữ liệu
                 if (!KiemTraDuLieu())
+                {
+                    return;
+                }
+                SqlConnection conn = new SqlConnection(chuoiKetNoi);
+                conn.Open();
+                string sqlCheck = "select count(*) from ThuCung where MaThuCung = '" + txtMaThuCung.Text.Trim() + "'";
+                SqlCommand cmdCheck = new SqlCommand(sqlCheck, conn);
+                int count = (int)cmdCheck.ExecuteScalar();
+                if(count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy thú cưng");
+                    conn.Close();
                     return;
 
-                // Kết nối SQL
-                using (SqlConnection conn = new SqlConnection(chuoiKetNoi))
+                }
+                string sqlUpdate =
+               "update ThuCung set " +
+               "TenThuCung = N'" + txtTenThuCung.Text.Trim() + "'," +
+               "LoaiThuCung = N'" + txtLoaiThuCung.Text.Trim() + "'," +
+               "Giong = N'" + txtGiong.Text.Trim() + "'," +
+               "Tuoi = " + txtTuoi.Text.Trim() + "," +
+               "TinhTrangSucKhoe = N'" + txtTinhTrangSK.Text.Trim() + "'," +
+               "MaKhachHang = '" + txtMaKH.Text.Trim() + "' " +
+               "where MaThuCung = '" + txtMaThuCung.Text.Trim() + "'";
+
+                SqlCommand cmdUpdate = new SqlCommand(sqlUpdate, conn);
+                int result = cmdUpdate.ExecuteNonQuery();
+                conn.Close();
+                if(result > 0)
                 {
-                    conn.Open();
-
-                    // Kiểm tra thú cưng tồn tại
-                    string sqlCheck = "SELECT COUNT(*) FROM ThuCung WHERE MaThuCung = @MaThuCung";
-
-                    using (SqlCommand cmdCheck = new SqlCommand(sqlCheck, conn))
-                    {
-                        cmdCheck.Parameters.AddWithValue("@MaThuCung", txtMaThuCung.Text.Trim());
-
-                        int count = (int)cmdCheck.ExecuteScalar();
-
-                        if (count == 0)
-                        {
-                            MessageBox.Show("Không tìm thấy thú cưng để sửa.");
-                            return;
-                        }
-                    }
-
-                    // Kiểm tra mã khách hàng tồn tại
-                    string sqlCheckKH = "SELECT COUNT(*) FROM KhachHang WHERE MaKhachHang = @MaKH";
-
-                    using (SqlCommand cmdCheckKH = new SqlCommand(sqlCheckKH, conn))
-                    {
-                        cmdCheckKH.Parameters.AddWithValue("@MaKH", txtMaKH.Text.Trim());
-
-                        int countKH = (int)cmdCheckKH.ExecuteScalar();
-
-                        if (countKH == 0)
-                        {
-                            MessageBox.Show("Mã khách hàng không tồn tại.");
-                            txtMaKH.Focus();
-                            return;
-                        }
-                    }
-
-                    // Câu lệnh UPDATE
-                    string sqlUpdate = @"UPDATE ThuCung SET
-                    TenThuCung = @TenThuCung,
-                    MaKhachHang = @MaKhachHang,
-                    Tuoi = @Tuoi,
-                    LoaiThuCung = @LoaiThuCung,
-                    Giong = @Giong,
-                    TinhTrangSucKhoe = @TinhTrangSucKhoe WHERE MaThuCung = @MaThuCung";
-
-                    using (SqlCommand command = new SqlCommand(sqlUpdate, conn))
-                    {
-                        command.Parameters.AddWithValue("@MaThuCung", txtMaThuCung.Text.Trim());
-                        command.Parameters.AddWithValue("@TenThuCung", txtTenThuCung.Text.Trim());
-                        command.Parameters.AddWithValue("@MaKhachHang", txtMaKH.Text.Trim());
-                        command.Parameters.AddWithValue("@Tuoi", int.Parse(txtTuoi.Text.Trim()));
-                        command.Parameters.AddWithValue("@LoaiThuCung", txtLoaiThuCung.Text.Trim());
-                        command.Parameters.AddWithValue("@Giong", txtGiong.Text.Trim());
-                        command.Parameters.AddWithValue("@TinhTrangSucKhoe", txtTinhTrangSK.Text.Trim());
-
-                        int result = command.ExecuteNonQuery();
-
-                        if (result > 0)
-                        {
-                            LoadThuCung();
-                            MessageBox.Show("Sửa thú cưng thành công!");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Sửa thất bại.");
-                        }
-                    }
+                    LoadThuCung();
+                    MessageBox.Show("Sửa thú cưng thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Sửa thú cưng thất bại");
                 }
             }
             catch (Exception ex)
@@ -325,60 +232,37 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
         {
             try
             {
-                // Kiểm tra mã thú cưng
-                if (string.IsNullOrWhiteSpace(txtMaThuCung.Text))
+                if (txtMaThuCung.Text.Trim() == "")
                 {
-                    MessageBox.Show("Vui lòng chọn thú cưng cần xóa.");
+                    MessageBox.Show("vui lòng chọn thú cưng");
                     return;
                 }
-
-                // Hộp xác nhận
-                DialogResult result = MessageBox.Show(
-                    "Bạn có chắc muốn xóa thú cưng này không?",
-                    "Xác nhận",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                // Nếu chọn No thì dừng
+                DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa không?", "Xác nhận", MessageBoxButtons.YesNo);
                 if (result == DialogResult.No)
-                    return;
-
-                // Kết nối SQL
-                using (SqlConnection conn = new SqlConnection(chuoiKetNoi))
                 {
-                    conn.Open();
-
-                    // Câu lệnh DELETE
-                    string sqlDelete = "DELETE FROM ThuCung WHERE MaThuCung = @MaThuCung";
-
-                    using (SqlCommand command = new SqlCommand(sqlDelete, conn))
-                    {
-                        command.Parameters.AddWithValue("@MaThuCung", txtMaThuCung.Text.Trim());
-
-                        int rows = command.ExecuteNonQuery();
-
-                        // Nếu xóa thành công
-                        if (rows > 0)
-                        {
-                            // Load lại DataGridView
-                            LoadThuCung();
-
-                            // Xóa trắng textbox
-                            txtMaThuCung.Clear();
-                            txtTenThuCung.Clear();
-                            txtMaKH.Clear();
-                            txtTuoi.Clear();
-                            txtLoaiThuCung.Clear();
-                            txtGiong.Clear();
-                            txtTinhTrangSK.Clear();
-
-                            MessageBox.Show("Xóa thú cưng thành công!");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Không tìm thấy thú cưng để xóa.");
-                        }
-                    }
+                    return;
+                }
+                SqlConnection conn = new SqlConnection(chuoiKetNoi);
+                conn.Open();
+                string sqlDelete = "delete from ThuCung where MaThuCung = '" + txtMaThuCung.Text.Trim() + "'";
+                SqlCommand cmdDelete = new SqlCommand(sqlDelete, conn);
+                int rows = cmdDelete.ExecuteNonQuery();
+                conn.Close();
+                if (rows > 0)
+                {
+                    LoadThuCung();
+                    txtMaThuCung.Clear();
+                    txtTenThuCung.Clear();
+                    txtMaKH.Clear();
+                    txtTuoi.Clear();
+                    txtLoaiThuCung.Clear();
+                    txtGiong.Clear();
+                    txtTinhTrangSK.Clear();
+                    MessageBox.Show("Xóa thú cưng thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại");
                 }
             }
             catch (Exception ex)
@@ -392,71 +276,39 @@ namespace quan_ly_thu_cung.GUI.Thu_Cung
         {
             try
             {
-                // Lấy từ khóa
                 string tuKhoa = txtTimKiem.Text.Trim();
-
-                // Nếu trống thì load lại toàn bộ
-                if (string.IsNullOrWhiteSpace(tuKhoa))
+                if(tuKhoa == "")
                 {
                     LoadThuCung();
                     return;
                 }
+                SqlConnection conn = new SqlConnection(chuoiKetNoi);
+                conn.Open();
+                string sql = "select * from ThuCung where ";
 
-                // Kết nối SQL
-                using (SqlConnection conn = new SqlConnection(chuoiKetNoi))
+                if(cboTimKiem.Text == "Mã thú cưng")
                 {
-                    conn.Open();
+                    sql += "MaThuCung like '%" + tuKhoa + "%'";
+                }
+                else if (cboTimKiem.Text == "Tên thú cưng")
+                {
+                    sql += "TenThuCung like N'%" + tuKhoa + "%'";
+                }
+                else if (cboTimKiem.Text == "Loại thú cưng")
+                {
+                    sql += "LoaiThuCung like N'%" + tuKhoa + "%'";
+                }
 
-                    // SQL cơ bản
-                    string sql = @"
-                    SELECT 
-                        ThuCung.MaThuCung,
-                        ThuCung.MaKhachHang,
-                        ThuCung.TenThuCung,
-                        ThuCung.LoaiThuCung,
-                        ThuCung.Giong,
-                        ThuCung.Tuoi,
-                        ThuCung.TinhTrangSucKhoe
-                    FROM ThuCung
-                    INNER JOIN KhachHang
-                    ON ThuCung.MaKhachHang = KhachHang.MaKhachHang
-                    WHERE ";
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
 
-                    // TÌM THEO COMBOBOX
+                dgvThuCung.DataSource = dt;
+                conn.Close();
 
-                    if (cboTimKiem.Text == "Mã thú cưng")
-                    {
-                        sql += "ThuCung.MaThuCung LIKE '%' + @TuKhoa + '%'";
-                    }
-                    else if (cboTimKiem.Text == "Tên thú cưng")
-                    {
-                        sql += "ThuCung.TenThuCung LIKE N'%' + @TuKhoa + '%'";
-                    }
-                    
-                    else if (cboTimKiem.Text == "Loại thú cưng")
-                    {
-                        sql += "ThuCung.LoaiThuCung LIKE N'%' + @TuKhoa + '%'";
-                    }
-
-                    // Tạo command
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-
-                    cmd.Parameters.AddWithValue("@TuKhoa", tuKhoa);
-
-                    // Đổ dữ liệu ra bảng
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-                    DataTable dt = new DataTable();
-
-                    da.Fill(dt);
-
-                    dgvThuCung.DataSource = dt;
-
-                    // Không tìm thấy
-                    if (dt.Rows.Count == 0)
-                    {
-                        MessageBox.Show("Không tìm thấy dữ liệu.");
-                    }
+                if (dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy dữ liệu");
                 }
             }
             catch (Exception ex)
